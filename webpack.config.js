@@ -4,6 +4,10 @@ import path from 'path';
 // Importa 'fileURLToPath' del módulo 'url' de Node.js para convertir una URL de archivo en una ruta de archivo
 import { fileURLToPath } from 'url';
 
+import CopyPlugin from 'copy-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+
 // Convierte la URL del archivo actual (import.meta.url) en una ruta de archivo
 const __filename = fileURLToPath(import.meta.url);
 
@@ -41,5 +45,16 @@ export default {
     devServer: {
         port: 8082,
         historyApiFallback: true,
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './public/index.html',
+            filename: 'index.html',
+        }),
+        new CopyPlugin({
+            patterns: [
+                { from: 'public/assets', to: 'assets' }
+            ]
+        }),
+    ]
 };
