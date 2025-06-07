@@ -39,18 +39,7 @@ export default {
         path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
-        port: 8082
-    },
-
-        plugins: [
-        new HtmlWebpackPlugin({
-            template: './public/index.html',
-            filename: 'index.html',
-        }),
-        new CopyPlugin({
-            patterns: [
-                { from: 'public/assets', to: 'assets' }
-            ]
-        }),
-    ]
+        port: 8082,
+        historyApiFallback: true,
+    }
 };
